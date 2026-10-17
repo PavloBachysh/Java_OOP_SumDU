@@ -1,19 +1,13 @@
 package org.example;
 
 public class Book {
-    String title;
-    String author;
-    int publication_year;
+    private String title;
+    private String author;
+    private int publication_year;
 
     public Book(String title, String author, int publication_year){
         this.title = title;
         this.author = author;
-        this.publication_year = publication_year;
-    }
-
-    public Book(String title, int publication_year){
-        this.title = title;
-        this.author = "Anonim";
         this.publication_year = publication_year;
     }
 
