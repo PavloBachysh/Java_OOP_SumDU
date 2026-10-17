@@ -4,8 +4,7 @@ package org.example;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello world!");
+        Book book = new Book("Me", "Pavlo Bachysh", 2026);
+        System.out.println(book.getTitle());
     }
 }
