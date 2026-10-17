@@ -33,4 +33,16 @@ public class Book {
         this.publication_year = publication_year;
         return publication_year;
     }
+
+    public String toString(){
+        return "Book has title: '" + title +
+                "' and was written by " + author +
+                " published in " + publication_year;
+    }
+
+    public boolean equals(Book b){
+        return title.equals(b.title) &&
+                author.equals(b.author) &&
+                publication_year == b.publication_year;
+    }
 }
