@@ -77,10 +77,10 @@ public class Book {
     }
 
     public String toString(){
-        return "Book has title: '" + title +
-                "' and was written by " + author +
-                " published in " + publication_year +
-                " price is " + price + "$";
+        return "Назва книги: '" + title +
+                "' і вона була написана автором " + author +
+                " в " + publication_year +
+                " році, її ціна " + price + "гривень";
     }
 
     public boolean equals(Book b){

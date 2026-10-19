@@ -1,32 +1,102 @@
 package org.example;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        Book[] books = new Book[5];
-        Book book1 = new Book("Me", "Pavlo Bachysh", 2026, 10);
-        books[0] = book1;
-        books[1] = new Book("Me", "Pavlo Bachysh", 2026, 10);
-        books[2] = new Book("Енеїда", "Котляревський", 1798, 12.5f);
-        books[3] = new Book("Кобзар", "Т.Г. Шевченко", 1859, 5);
-        books[4] = new Book("Не знаю", "Невідомо", 1991, 200);
-        for (int i = 0; i < books.length; i++){
-            System.out.println("Книга номер " + (i+1) + "\n" + books[i].toString() + "\n");
+        ArrayList<Book> books = new ArrayList<Book>();
+        Scanner scanner = new Scanner(System.in);
+        int command;
+        while(true){
+            printMenu();
+            try{
+                command = scanner.nextInt();
+            } catch (InputMismatchException e){
+                System.out.println("Введені некоректні дані, введіть одне з запропонованих чисел");
+                scanner.next();
+                continue;
+            }
+            scanner.nextLine();
+            switch (command){
+                case 1:
+                    Book newBook = createBook(scanner);
+                    if (newBook != null){
+                        books.add(newBook);
+                        System.out.println("Нову книгу додано!");
+                    } else {
+                        System.out.println("Неправильно введено дані для нової книги");
+                    }
+                    break;
+                case 2:
+                    if (printBooks(books) == false){
+                        System.out.println("Книг немає");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Завершення роботи");
+                    return;
+                default:
+                    System.out.println("Даної команди не існує");
+                    break;
+            }
         }
 
-        System.out.print("Перша і друга книга - ");
-        if (books[0].equals(books[1])){
-            System.out.println("Однакові");
-        } else{
-            System.out.println("Різні");
-        }
-
-        System.out.print("Друга і третя книга - ");
-        if (books[1].equals(books[2])){
-            System.out.println("Однакові");
-        } else{
-            System.out.println("Різні");
-        }
     }
+
+    private static void printMenu() {
+        System.out.println(
+                "Виберіть команду: \n" +
+                        "1 - Додати нову книгу\n" +
+                        "2 - Вивести інформацію про всі книги\n" +
+                        "3 - Завершити роботу"
+        );
+    }
+
+    private static Book createBook(Scanner scanner){
+        String title;
+        String author;
+        int publication_year;
+        float price;
+        System.out.println("Введіть назву: ");
+        title = scanner.nextLine();
+        System.out.println("Введіть автора: ");
+        author = scanner.nextLine();
+        System.out.println("Введіть рік написання: ");
+        try{
+            publication_year = scanner.nextInt();
+        } catch (InputMismatchException e){
+            scanner.next();
+            return null;
+        }
+        System.out.println("Введіть ціну: ");
+        try{
+            price = scanner.nextFloat();
+        } catch (InputMismatchException e){
+            scanner.next();
+            return null;
+        }
+        try{
+            Book newBook = new Book(title, author, publication_year, price);
+            return newBook;
+        } catch (IllegalArgumentException e){
+            return null;
+        }
+
+    }
+
+    private static boolean printBooks(ArrayList<Book> books){
+        if (!books.isEmpty()){
+            int i = 0;
+            System.out.println("Всі книги");
+            for (Book book : books){
+                i++;
+                System.out.println(i + ": " + book.toString());
+            }
+            System.out.println();
+            return true;
+        }
+        return false;
+    }
+
 }
