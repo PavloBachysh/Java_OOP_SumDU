@@ -5,12 +5,12 @@ package org.example;
 public class Main {
     static void main() {
         Book[] books = new Book[5];
-        Book book1 = new Book("Me", "Pavlo Bachysh", 2026);
+        Book book1 = new Book("Me", "Pavlo Bachysh", 2026, 10);
         books[0] = book1;
-        books[1] = new Book("Me", "Pavlo Bachysh", 2026);
-        books[2] = new Book("Енеїда", "Котляревський", 1798);
-        books[3] = new Book("Кобзар", "Т.Г. Шевченко", 1859);
-        books[4] = new Book("Не знаю", "Невідомо", 1991);
+        books[1] = new Book("Me", "Pavlo Bachysh", 2026, 10);
+        books[2] = new Book("Енеїда", "Котляревський", 1798, 12.5f);
+        books[3] = new Book("Кобзар", "Т.Г. Шевченко", 1859, 5);
+        books[4] = new Book("Не знаю", "Невідомо", 1991, 200);
         for (int i = 0; i < books.length; i++){
             System.out.println("Книга номер " + (i+1) + "\n" + books[i].toString() + "\n");
         }

@@ -4,11 +4,13 @@ public class Book {
     private String title;
     private String author;
     private int publication_year;
+    private float price;
 
-    public Book(String title, String author, int publication_year){
+    public Book(String title, String author, int publication_year, float price){
         this.title = title;
         this.author = author;
         this.publication_year = publication_year;
+        this.price = price;
     }
 
     public String getTitle(){
@@ -20,6 +22,7 @@ public class Book {
     public int getPublicationYear(){
         return publication_year;
     }
+    public float getPrice() {return price;}
 
     public String setTitle(String title){
         this.title = title;
@@ -33,16 +36,22 @@ public class Book {
         this.publication_year = publication_year;
         return publication_year;
     }
+    public float setPrice(float price){
+        this.price = price;
+        return price;
+    }
 
     public String toString(){
         return "Book has title: '" + title +
                 "' and was written by " + author +
-                " published in " + publication_year;
+                " published in " + publication_year +
+                " price is " + price + "$";
     }
 
     public boolean equals(Book b){
         return title.equals(b.title) &&
                 author.equals(b.author) &&
-                publication_year == b.publication_year;
+                publication_year == b.publication_year &&
+                Float.compare(price, b.price)==0;
     }
 }
