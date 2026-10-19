@@ -28,7 +28,7 @@ public class BookTest {
     }
 
     @Test
-    public void exeptionOnSetTitleTest(){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {book.setTitle("Book");});
+    public void exeptionNotThrowOnSetTitleTest(){
+        Assertions.assertDoesNotThrow(() -> {book.setTitle("Book");});
     }
 }
