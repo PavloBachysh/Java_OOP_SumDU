@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Date;
+
 public class Book {
     private String title;
     private String author;
@@ -7,10 +9,27 @@ public class Book {
     private float price;
 
     public Book(String title, String author, int publication_year, float price){
-        this.title = title;
-        this.author = author;
-        this.publication_year = publication_year;
-        this.price = price;
+        if (title.trim().length() == 0){
+            throw new IllegalArgumentException();
+        } else {
+            this.title = title;
+        }
+        if (author.length() < 3 || author.length() > 60){
+            throw new IllegalArgumentException();
+        } else {
+            this.author = author;
+        }
+        if (publication_year > 2026){
+            throw new IllegalArgumentException();
+        } else {
+            this.publication_year = publication_year;
+        }
+        if (price < 0){
+            throw new IllegalArgumentException();
+        } else {
+            this.price = price;
+        }
+
     }
 
     public String getTitle(){
@@ -25,19 +44,35 @@ public class Book {
     public float getPrice() {return price;}
 
     public String setTitle(String title){
-        this.title = title;
+        if (title.trim().length() == 0){
+            throw new IllegalArgumentException();
+        } else {
+            this.title = title;
+        }
         return title;
     }
     public String setAuthor(String author){
-        this.author = author;
+        if (author.length() < 3 || author.length() > 60){
+            throw new IllegalArgumentException();
+        } else {
+            this.author = author;
+        }
         return author;
     }
     public int setPublicationYear(int publication_year){
-        this.publication_year = publication_year;
+        if (publication_year > 2026){
+            throw new IllegalArgumentException();
+        } else {
+            this.publication_year = publication_year;
+        }
         return publication_year;
     }
     public float setPrice(float price){
-        this.price = price;
+        if (price < 0){
+            throw new IllegalArgumentException();
+        } else {
+            this.price = price;
+        }
         return price;
     }
 
