@@ -3,7 +3,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Головнйи клас програми
+ */
 public class Main {
+    /**
+     * Драйвер програми
+     */
     static void main() {
         ArrayList<Book> books = new ArrayList<Book>();
         Scanner scanner = new Scanner(System.in);
@@ -44,6 +50,9 @@ public class Main {
 
     }
 
+    /**
+     * Вивід тексту меню винесений окремим методом
+     */
     private static void printMenu() {
         System.out.println(
                 "Виберіть команду: \n" +
@@ -53,6 +62,11 @@ public class Main {
         );
     }
 
+    /**
+     * Метод створення нового обє'кту книги <b>Book</b>
+     * @param scanner - сканер (для введення)
+     * @return <b>Book</b>
+     */
     private static Book createBook(Scanner scanner){
         String title;
         String author;
@@ -85,6 +99,11 @@ public class Main {
 
     }
 
+    /**
+     * Метод виведення всіх книг списку
+     * @param books - список книг (ArrayList<Book>)
+     * @return true - список не пустий, false - пустий список
+     */
     private static boolean printBooks(ArrayList<Book> books){
         if (!books.isEmpty()){
             int i = 0;
