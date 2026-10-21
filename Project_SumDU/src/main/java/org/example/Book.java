@@ -16,6 +16,8 @@ public class Book {
     private int publication_year;
     /**Ціна книги*/
     private float price;
+    /**Кількість створених об'єктів*/
+    private static int counter = 0;
 
     /**
      * Конструктор класу
@@ -46,14 +48,20 @@ public class Book {
         } else {
             this.price = price;
         }
+        counter++;
 
     }
 
+    /**
+     * Конструктор копіювання
+     * @param book
+     */
     public Book(Book book){
         this.title = book.title;
         this.author = book.author;
         this.publication_year = book.publication_year;
         this.price = book.price;
+        counter++;
     }
 
     public String getTitle(){
@@ -66,6 +74,7 @@ public class Book {
         return publication_year;
     }
     public float getPrice() {return price;}
+    public static int getCounter() {return counter;}
 
     public String setTitle(String title){
         if (title.trim().length() == 0){

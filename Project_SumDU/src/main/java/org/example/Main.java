@@ -107,7 +107,7 @@ public class Main {
     private static boolean printBooks(ArrayList<Book> books){
         if (!books.isEmpty()){
             int i = 0;
-            System.out.println("Всі книги");
+            System.out.println("Загальна кількість книг: " + Book.getCounter() + ". " + "Всі книги:");
             for (Book book : books){
                 i++;
                 System.out.println(i + ": " + book.toString());
