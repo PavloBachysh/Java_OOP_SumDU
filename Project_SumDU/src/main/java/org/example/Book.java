@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,6 +17,8 @@ public class Book {
     private int publication_year;
     /**Ціна книги*/
     private float price;
+    /**Магазини, в яких є ця книга*/
+    private ArrayList<Shop> shops;
     /**Кількість створених об'єктів*/
     private static int counter = 0;
 
@@ -48,6 +51,7 @@ public class Book {
         } else {
             this.price = price;
         }
+        shops = new ArrayList<Shop>();
         counter++;
 
     }
@@ -61,6 +65,8 @@ public class Book {
         this.author = book.author;
         this.publication_year = book.publication_year;
         this.price = book.price;
+        shops = new ArrayList<Shop>();
+        shops.addAll(book.shops);
         counter++;
     }
 
@@ -74,54 +80,75 @@ public class Book {
         return publication_year;
     }
     public float getPrice() {return price;}
+    public ArrayList<Shop> getShops() {return new ArrayList<Shop>(shops);}
     public static int getCounter() {return counter;}
 
-    public String setTitle(String title){
+    public void setTitle(String title){
         if (title.trim().length() == 0){
             throw new IllegalArgumentException();
         } else {
             this.title = title;
         }
-        return title;
     }
-    public String setAuthor(String author){
+    public void setAuthor(String author){
         if (author.length() < 3 || author.length() > 60){
             throw new IllegalArgumentException();
         } else {
             this.author = author;
         }
-        return author;
     }
-    public int setPublicationYear(int publication_year){
+    public void setPublicationYear(int publication_year){
         if (publication_year > 2026){
             throw new IllegalArgumentException();
         } else {
             this.publication_year = publication_year;
         }
-        return publication_year;
     }
-    public float setPrice(float price){
+    public void setPrice(float price){
         if (price < 0){
             throw new IllegalArgumentException();
         } else {
             this.price = price;
         }
-        return price;
+    }
+    public void setShops(ArrayList<Shop> shops){
+        this.shops.clear();
+        this.shops.addAll(shops);
+    }
+
+    /**
+     * Додавання нового магазину
+     * @param shop новий магазин
+     */
+    public void addShop(Shop shop){
+        if (shops.contains(shop)){
+            throw new IllegalArgumentException();
+        }else{
+            shops.add(shop);
+        }
     }
 
     /**
      * Перевантажений метод toString()
      * @return опис книги
      */
+    @Override
     public String toString(){
-        return "Назва книги: '" + title +
+        StringBuilder sb = new StringBuilder();
+        sb.append("Назва книги: '" + title +
                 "' і вона була написана автором " + author +
                 " в " + publication_year +
-                " році, її ціна " + price + "гривень";
+                " році, її ціна " + price + "гривень\n" +
+                "   її можна знайти в такох магазинах: ");
+        for (Shop shop : shops){
+            sb.append(shop.toString() + ", ");
+        }
+        sb.delete(sb.length()-2, sb.length()-1);
+        return sb.toString();
     }
 
     /**
-     * Перевантажений метод toString()
+     * метод equals()
      * @param b - Книга, з якою порівнюєтсья поточна
      * @return true - книги однакові, false - книги різні
      */
