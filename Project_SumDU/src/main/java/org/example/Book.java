@@ -49,6 +49,13 @@ public class Book {
 
     }
 
+    public Book(Book book){
+        this.title = book.title;
+        this.author = book.author;
+        this.publication_year = book.publication_year;
+        this.price = book.price;
+    }
+
     public String getTitle(){
         return title;
     }
