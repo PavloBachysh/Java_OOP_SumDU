@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,10 +16,7 @@ public class Book {
     private int publication_year;
     /**Ціна книги*/
     private float price;
-    /**Магазини, в яких є ця книга*/
-    private ArrayList<Shop> shops;
-    /**Кількість створених об'єктів*/
-    private static int counter = 0;
+
 
     /**
      * Конструктор класу
@@ -51,8 +47,6 @@ public class Book {
         } else {
             this.price = price;
         }
-        shops = new ArrayList<Shop>();
-        counter++;
 
     }
 
@@ -65,9 +59,6 @@ public class Book {
         this.author = book.author;
         this.publication_year = book.publication_year;
         this.price = book.price;
-        shops = new ArrayList<Shop>();
-        shops.addAll(book.shops);
-        counter++;
     }
 
     public String getTitle(){
@@ -80,8 +71,7 @@ public class Book {
         return publication_year;
     }
     public float getPrice() {return price;}
-    public ArrayList<Shop> getShops() {return new ArrayList<Shop>(shops);}
-    public static int getCounter() {return counter;}
+
 
     public void setTitle(String title){
         if (title.trim().length() == 0){
@@ -111,22 +101,7 @@ public class Book {
             this.price = price;
         }
     }
-    public void setShops(ArrayList<Shop> shops){
-        this.shops.clear();
-        this.shops.addAll(shops);
-    }
 
-    /**
-     * Додавання нового магазину
-     * @param shop новий магазин
-     */
-    public void addShop(Shop shop){
-        if (shops.contains(shop)){
-            throw new IllegalArgumentException("Ви спробували додати магазин, що вже був доданий");
-        }else{
-            shops.add(shop);
-        }
-    }
 
     /**
      * Перевантажений метод toString()
@@ -138,12 +113,8 @@ public class Book {
         sb.append("Назва книги: '" + title +
                 "' і вона була написана автором " + author +
                 " в " + publication_year +
-                " році, її ціна " + price + "гривень\n" +
-                "   її можна знайти в такох магазинах: ");
-        for (Shop shop : shops){
-            sb.append(shop.toString() + ", ");
-        }
-        sb.delete(sb.length()-2, sb.length()-1);
+                " році, її ціна " + price + "гривень\n");
+
         return sb.toString();
     }
 

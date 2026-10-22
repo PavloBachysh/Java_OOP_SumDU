@@ -61,38 +61,4 @@ public class BookTest {
         Assertions.assertDoesNotThrow(() -> {book.setTitle("Book");});
     }
 
-    /**
-     * Перевірка на вийняток при спробі повторно додати той самий магазин
-     */
-    @Test
-    public void exceptionOnAddShopTest(){
-        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            book.addShop(Shop.COMICSMANIA);
-            book.addShop((Shop.KNIGOLUB));
-            book.addShop(Shop.LIBRARIUM);
-            book.addShop(Shop.COMICSMANIA);
-        });
-        Assertions.assertEquals("Ви спробували додати магазин, що вже був доданий", e.getMessage());
-    }
-
-    /**
-     * Перевірка кількості магазинів, при спробі додати кілька однакових
-     */
-    @Test
-    public void addShopsTest(){
-        try{
-            book.addShop(Shop.COMICSMANIA);
-            book.addShop((Shop.KNIGOLUB));
-            book.addShop(Shop.LIBRARIUM);
-            book.addShop(Shop.COMICSMANIA);
-        } catch (IllegalArgumentException e){
-
-        }
-        Set<Shop> set = new HashSet<Shop>();
-        set.add(Shop.COMICSMANIA);
-        set.add(Shop.KNIGOLUB);
-        set.add(Shop.LIBRARIUM);
-        set.add(Shop.COMICSMANIA);
-        Assertions.assertEquals(book.getShops().size(), set.size());
-    }
 }

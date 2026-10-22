@@ -93,62 +93,9 @@ public class Main {
         }
         try {
             Book newBook = new Book(title, author, publication_year, price);
-            addNewShop(newBook, scanner);
             return newBook;
         } catch (IllegalArgumentException e) {
             return null;
-        }
-    }
-
-    private static void addNewShop(Book book, Scanner scanner) {
-        int command;
-        while (true) {
-            System.out.println("Чи бажаєте ви додати магазин, в якому продається ця книга?\n1 - Так\n0 - Ні");
-            try {
-                command = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Введені некоректні дані, введіть одне з запропонованих чисел");
-                scanner.next();
-                continue;
-            }
-            scanner.nextLine();
-            if (command == 1) {
-                System.out.println("1 - Книголюб\n2 - Книгарня.Є\n3 - Лібраріум\n4 - Comics Mania\n0 - Завершити");
-                try {
-                    command = scanner.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("Введені некоректні дані, введіть одне з запропонованих чисел");
-                    scanner.next();
-                    continue;
-                }
-                scanner.nextLine();
-                try{
-                    switch (command) {
-                        case 1:
-                            book.addShop(Shop.KNIGOLUB);
-                            break;
-                        case 2:
-                            book.addShop(Shop.KNIGARNYAE);
-                            break;
-                        case 3:
-                            book.addShop(Shop.LIBRARIUM);
-                            break;
-                        case 4:
-                            book.addShop(Shop.COMICSMANIA);
-                            break;
-                        case 0:
-                            break;
-                    }
-                } catch(IllegalArgumentException e){
-                    System.out.println("Даний магазин вже було додано, спробуйте інший");
-                }
-
-            } else {
-                if (command == 0) {
-                    return;
-                }
-                System.out.println("Даної команди не існує");
-            }
         }
     }
 
@@ -160,7 +107,7 @@ public class Main {
     private static boolean printBooks(ArrayList<Book> books){
         if (!books.isEmpty()){
             int i = 0;
-            System.out.println("Загальна кількість книг: " + Book.getCounter() + ". " + "Всі книги:");
+            System.out.println("Всі книги:");
             for (Book book : books){
                 i++;
                 System.out.println(i + ": " + book.toString());
