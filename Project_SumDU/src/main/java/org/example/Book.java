@@ -32,22 +32,22 @@ public class Book {
      */
     public Book(String title, String author, int publication_year, float price){
         if (title.trim().length() == 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Назва книги має містити хоча б 1 символ відмінний від пробілу");
         } else {
             this.title = title;
         }
         if (author.length() < 3 || author.length() > 60){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Автор має бути від 3 до 60 літер, ви вказали " + author.length());
         } else {
             this.author = author;
         }
         if (publication_year > 2026){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Книга має бути написана не пізніше ніж в 2026 році, ви вказали " + publication_year);
         } else {
             this.publication_year = publication_year;
         }
         if (price < 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Ціна має бути невід'ємною, ви вказали " + price);
         } else {
             this.price = price;
         }
@@ -85,28 +85,28 @@ public class Book {
 
     public void setTitle(String title){
         if (title.trim().length() == 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Назва книги має містити хоча б 1 символ відмінний від пробілу");
         } else {
             this.title = title;
         }
     }
     public void setAuthor(String author){
         if (author.length() < 3 || author.length() > 60){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Автор має бути від 3 до 60 літер, ви вказали " + author.length());
         } else {
             this.author = author;
         }
     }
     public void setPublicationYear(int publication_year){
         if (publication_year > 2026){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Книга має бути написана не пізніше ніж в 2026 році, ви вказали " + publication_year);
         } else {
             this.publication_year = publication_year;
         }
     }
     public void setPrice(float price){
         if (price < 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Ціна має бути невід'ємною, ви вказали " + price);
         } else {
             this.price = price;
         }
@@ -122,7 +122,7 @@ public class Book {
      */
     public void addShop(Shop shop){
         if (shops.contains(shop)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Ви спробували додати магазин, що вже був доданий");
         }else{
             shops.add(shop);
         }
