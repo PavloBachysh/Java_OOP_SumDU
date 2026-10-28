@@ -65,17 +65,6 @@ public class BookTest {
         Assertions.assertEquals("Кількість сторінок має бути невід'ємною", e.getMessage());
     }
 
-    /**
-     * Перевірка на вийняток при спробі створити паперову книгу з від'ємною кількістю сторінок
-     */
-    @Test
-    public void exeptionOnCopyPaperBookTest(){
-        PaperBook pb = new PaperBook(book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getPrice(), -3);
-        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            PaperBook newPB = new PaperBook(pb);
-        });
-        Assertions.assertEquals("Кількість сторінок має бути невід'ємною", e.getMessage());
-    }
 
     /**
      * Перевірка на вийняток при спробі задати автора одним символом

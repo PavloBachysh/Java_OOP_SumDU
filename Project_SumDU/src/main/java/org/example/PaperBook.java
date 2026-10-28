@@ -13,11 +13,7 @@ public class PaperBook extends Book{
 
     public PaperBook(PaperBook paperBook) {
         super(paperBook);
-        if (num_of_pages < 0){
-            throw new IllegalArgumentException("Кількість сторінок має бути невід'ємною");
-        } else{
-            this.num_of_pages = paperBook.num_of_pages;
-        }
+        this.num_of_pages = paperBook.num_of_pages;
     }
 
     public int getNum_of_pages() {return num_of_pages;}
