@@ -34,13 +34,47 @@ public class BookTest {
     }
 
     /**
-     * Перевірка на вийняток при спробі створити об'єкт з неможливим роком написання
+     * Перевірка на вийняток при спробі створити книгу з неможливим роком написання
      */
     @Test
     public void exeptionOnCreateBookTest(){
         int publication_year = 3000;
         Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {new Book("MyBook", "Pavlo", publication_year, 1000);});
         Assertions.assertEquals("Книга має бути написана не пізніше ніж в 2026 році, ви вказали " + publication_year, e.getMessage());
+    }
+
+    /**
+     * Перевірка на вийняток при спробі створити електронну книгу з неправильним посиланням
+     */
+    @Test
+    public void exeptionOnCreateEBookTest(){
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new EBook(book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getPrice(), "something");
+        });
+        Assertions.assertEquals("Це посилання занадто коротке (менше 6 символів) або не містітить '.'", e.getMessage());
+    }
+
+    /**
+     * Перевірка на вийняток при спробі створити паперову книгу з від'ємною кількістю сторінок
+     */
+    @Test
+    public void exeptionOnCreatePaperBookTest(){
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new PaperBook(book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getPrice(), -3);
+        });
+        Assertions.assertEquals("Кількість сторінок має бути невід'ємною", e.getMessage());
+    }
+
+    /**
+     * Перевірка на вийняток при спробі створити паперову книгу з від'ємною кількістю сторінок
+     */
+    @Test
+    public void exeptionOnCopyPaperBookTest(){
+        PaperBook pb = new PaperBook(book.getTitle(), book.getAuthor(), book.getPublicationYear(), book.getPrice(), -3);
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            PaperBook newPB = new PaperBook(pb);
+        });
+        Assertions.assertEquals("Кількість сторінок має бути невід'ємною", e.getMessage());
     }
 
     /**
