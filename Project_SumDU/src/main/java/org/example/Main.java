@@ -99,6 +99,43 @@ public class Main {
         }
     }
 
+    private static EBook createEBook(Scanner scanner){
+        Book base = createBook(scanner);
+        if (base == null){
+            return null;
+        }
+        String link;
+        System.out.println("Введіть посилання на книгу: ");
+        link = scanner.nextLine();
+        try{
+            EBook newEBook = new EBook(base.getTitle(), base.getAuthor(), base.getPublicationYear(), base.getPrice(), link);
+            return newEBook;
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    private static PaperBook createPaperBook(Scanner scanner){
+        Book base = createBook(scanner);
+        if (base == null){
+            return null;
+        }
+        int num_of_pages;
+        System.out.println("Введіть кількість сторінок: ");
+        try {
+            num_of_pages = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.next();
+            return null;
+        }
+        try{
+            PaperBook newPaperBook = new PaperBook(base.getTitle(), base.getAuthor(), base.getPublicationYear(), base.getPrice(), num_of_pages);
+            return newPaperBook;
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
     /**
      * Метод виведення всіх книг списку
      * @param books - список книг (ArrayList<Book>)

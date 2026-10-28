@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class Book {
     /**Назва книги*/
-    private String title;
+    protected String title;
     /**Автор книги*/
-    private String author;
+    protected String author;
     /**Рік написання*/
-    private int publication_year;
+    protected int publication_year;
     /**Ціна книги*/
-    private float price;
+    protected float price;
 
 
     /**
