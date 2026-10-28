@@ -35,11 +35,29 @@ public class Main {
                     }
                     break;
                 case 2:
+                    EBook newEBook = createEBook(scanner);
+                    if (newEBook != null) {
+                        books.add(newEBook);
+                        System.out.println("Нову електронну книгу додано!");
+                    } else {
+                        System.out.println("Неправильно введено дані для нової електронної книги");
+                    }
+                    break;
+                case 3:
+                    PaperBook newPaperBook = createPaperBook(scanner);
+                    if (newPaperBook != null) {
+                        books.add(newPaperBook);
+                        System.out.println("Нову паперову книгу додано!");
+                    } else {
+                        System.out.println("Неправильно введено дані для нової папепрової книги");
+                    }
+                    break;
+                case 4:
                     if (printBooks(books) == false) {
                         System.out.println("Книг немає");
                     }
                     break;
-                case 3:
+                case 0:
                     System.out.println("Завершення роботи");
                     return;
                 default:
@@ -57,8 +75,10 @@ public class Main {
         System.out.println(
                 "Виберіть команду: \n" +
                         "1 - Додати нову книгу\n" +
-                        "2 - Вивести інформацію про всі книги\n" +
-                        "3 - Завершити роботу"
+                        "2 - Додати нову електронну книгу\n" +
+                        "3 - Додати нову паперову книгу\n" +
+                        "4 - Вивести інформацію про всі книги\n" +
+                        "0 - Завершити роботу"
         );
     }
 
@@ -101,6 +121,7 @@ public class Main {
 
     private static EBook createEBook(Scanner scanner){
         Book base = createBook(scanner);
+        scanner.nextLine();
         if (base == null){
             return null;
         }
