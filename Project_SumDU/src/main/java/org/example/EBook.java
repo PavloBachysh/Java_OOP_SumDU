@@ -1,5 +1,4 @@
 package org.example;
-//TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 public class EBook extends Book{
     private String link;
 
@@ -47,5 +46,4 @@ public class EBook extends Book{
                 link.equals(b.link);
     }
 
-    //TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 }

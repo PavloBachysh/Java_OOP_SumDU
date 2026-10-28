@@ -1,5 +1,4 @@
 package org.example;
-//TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 public class PaperBook extends Book{
     private int num_of_pages;
 
@@ -48,5 +47,4 @@ public class PaperBook extends Book{
                 Float.compare(price, b.price)==0 &&
                 num_of_pages == b.num_of_pages;
     }
-    //TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 }
